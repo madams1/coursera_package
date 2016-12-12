@@ -7,17 +7,22 @@
 fars_read(filename)
 }
 \arguments{
-\item{filename}{A character string for the name of a file in the `data` directory within fars_data.zip}
+\item{filename}{A character string for the name of a file in the \code{data} directory within fars_data.zip}
 }
 \value{
 Returns a dataframe of accident data for a given filename.
-    An error is produced if the file can't be located with the given `filename`.
+    An error is produced if the file can't be located with the given \code{filename}.
 }
 \description{
-Reads a file from `/data` inside fars_data.zip based on its filename.
-Useful in conjunction with `make_filename()`.
+Reads a file from \code{data} inside fars_data.zip based on its filename.
+Useful in conjunction with \code{make_filename()}.
 }
 \details{
-Needs `dplyr` and `readr` packages available.
+Needs \code{dplyr} and \code{readr} packages available.
+}
+\examples{
+fars_2015 <- fars_read(make_filename(2015))
+dplyr::glimpse(fars_2015)
+
 }
 

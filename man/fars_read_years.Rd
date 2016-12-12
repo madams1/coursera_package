@@ -2,6 +2,7 @@
 % Please edit documentation in R/fars_functions.R
 \name{fars_read_years}
 \alias{fars_read_years}
+\title{Get month and year from multiple FARS data sets at once}
 \usage{
 fars_read_years(years)
 }
@@ -13,11 +14,11 @@ Returns a list with a length equal to `length(years)`.
     For a valid year, the list element is a tibble with `MONTH` and `year` columns from the corresponding yearly FARS data.
     Each invalid year will return `NULL` and a warning. Specifically if `!year %in% 2013:2015`.
 }
-\examples{
-make_filename(2013)
-Get month and year from multiple FARS data sets at once
-
+\description{
 Needs `dplyr` and `readr` packages available.
+}
+\examples{
+fars_2013_to_2015 <- fars_read_years(2013:2015)
 
 }
 

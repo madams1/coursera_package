@@ -2,6 +2,7 @@
 % Please edit documentation in R/fars_functions.R
 \name{fars_summarize_years}
 \alias{fars_summarize_years}
+\title{Count monthly records from multiple (yearly) FARS data sets}
 \usage{
 fars_summarize_years(years)
 }
@@ -13,11 +14,11 @@ Returns a tibble containing the number of monthly fatal injuries suffered in mot
     vehicle traffic crashes for each year in `years`.
     Provides a warning for (and excludes) any invalid years from the calculated summary.
 }
-\examples{
-fars_2013_to_2015 <- fars_read_years(2013:2015)
-Count monthly records from multiple (yearly) FARS data sets
-
+\description{
 Needs `dplyr`, `readr`, and `tidyr` packages available.
+}
+\examples{
+monthly_fars_2013_to_2015 <- fars_summarize_years(2013:2015)
 
 }
 

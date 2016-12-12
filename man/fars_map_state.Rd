@@ -2,6 +2,7 @@
 % Please edit documentation in R/fars_functions.R
 \name{fars_map_state}
 \alias{fars_map_state}
+\title{Plot accidents in year for state}
 \usage{
 fars_map_state(state.num, year)
 }
@@ -14,11 +15,11 @@ fars_map_state(state.num, year)
 Plots the location of accidents for the given state and year based on their latitude and longitude.
     Will return an error if `state.num` is invalid.
 }
-\examples{
-monthly_fars_2013_to_2015 <- fars_summarize_years(2013:2015)
-Plot accidents in year for state
-
+\description{
 Needs `dplyr`, `readr`, `maps`, and `graphics` packages available. `maps` package should be loaded.
+}
+\examples{
+fars_map_state(1, 2013)
 
 }
 

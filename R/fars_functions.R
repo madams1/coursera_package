@@ -1,14 +1,18 @@
 #' Read FARS data
 #'
-#' Reads a file from `/data` inside fars_data.zip based on its filename.
-#' Useful in conjunction with `make_filename()`.
+#' Reads a file from \code{data} inside fars_data.zip based on its filename.
+#' Useful in conjunction with \code{make_filename()}.
 #'
-#' Needs `dplyr` and `readr` packages available.
+#' Needs \code{dplyr} and \code{readr} packages available.
 #'
-#' @param filename A character string for the name of a file in the `data` directory within fars_data.zip
+#' @param filename A character string for the name of a file in the \code{data} directory within fars_data.zip
 #'
 #' @return Returns a dataframe of accident data for a given filename.
-#'     An error is produced if the file can't be located with the given `filename`.
+#'     An error is produced if the file can't be located with the given \code{filename}.
+
+#' @examples
+#' fars_2015 <- fars_read(make_filename(2015))
+#' dplyr::glimpse(fars_2015)
 #'
 #' @export
 fars_read <- function(filename) {
@@ -19,9 +23,6 @@ fars_read <- function(filename) {
     })
     dplyr::tbl_df(data)
 }
-#' @examples
-#' fars_2015 <- fars_read(make_filename(2015))
-#' dplyr::glimpse(fars_2015)
 
 
 #' Create FARS filename
@@ -34,13 +35,14 @@ fars_read <- function(filename) {
 #' @return Returns a character string that represents a filename for
 #'     accident data located in fars_data.zip
 #'
+#' @examples
+#' make_filename(2013)
+#'
 #' @export
 make_filename <- function(year) {
     year <- as.integer(year)
     sprintf("accident_%d.csv.bz2", year)
 }
-#' @examples
-#' make_filename(2013)
 
 
 #' Get month and year from multiple FARS data sets at once
@@ -52,6 +54,9 @@ make_filename <- function(year) {
 #' @return Returns a list with a length equal to `length(years)`.
 #'     For a valid year, the list element is a tibble with `MONTH` and `year` columns from the corresponding yearly FARS data.
 #'     Each invalid year will return `NULL` and a warning. Specifically if `!year %in% 2013:2015`.
+#'
+#' @examples
+#' fars_2013_to_2015 <- fars_read_years(2013:2015)
 #'
 #' @export
 fars_read_years <- function(years) {
@@ -67,8 +72,6 @@ fars_read_years <- function(years) {
         })
     })
 }
-#' @examples
-#' fars_2013_to_2015 <- fars_read_years(2013:2015)
 
 
 #' Count monthly records from multiple (yearly) FARS data sets
@@ -81,6 +84,9 @@ fars_read_years <- function(years) {
 #'     vehicle traffic crashes for each year in `years`.
 #'     Provides a warning for (and excludes) any invalid years from the calculated summary.
 #'
+#' @examples
+#' monthly_fars_2013_to_2015 <- fars_summarize_years(2013:2015)
+#'
 #' @export
 fars_summarize_years <- function(years) {
     dat_list <- fars_read_years(years)
@@ -89,8 +95,6 @@ fars_summarize_years <- function(years) {
         dplyr::summarize(n = n()) %>%
         tidyr::spread(year, n)
 }
-#' @examples
-#' monthly_fars_2013_to_2015 <- fars_summarize_years(2013:2015)
 
 
 #' Plot accidents in year for state
@@ -102,6 +106,9 @@ fars_summarize_years <- function(years) {
 #'
 #' @return Plots the location of accidents for the given state and year based on their latitude and longitude.
 #'     Will return an error if `state.num` is invalid.
+#'
+#' @examples
+#' fars_map_state(1, 2013)
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
@@ -124,5 +131,3 @@ fars_map_state <- function(state.num, year) {
         graphics::points(LONGITUD, LATITUDE, pch = 46)
     })
 }
-#' @examples
-#' fars_map_state(1, 2013)

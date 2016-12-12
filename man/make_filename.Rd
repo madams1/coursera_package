@@ -2,6 +2,7 @@
 % Please edit documentation in R/fars_functions.R
 \name{make_filename}
 \alias{make_filename}
+\title{Create FARS filename}
 \usage{
 make_filename(year)
 }
@@ -12,13 +13,12 @@ make_filename(year)
 Returns a character string that represents a filename for
     accident data located in fars_data.zip
 }
-\examples{
-fars_2015 <- fars_read(make_filename(2015))
-dplyr::glimpse(fars_2015)
-Create FARS filename
-
+\description{
 A helper function for creating a filename based on the desired accident year.
 Useful in conjunction with `fars_read()`.
+}
+\examples{
+make_filename(2013)
 
 }
 
