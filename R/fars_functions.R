@@ -5,6 +5,8 @@
 #'
 #' Needs \code{dplyr} and \code{readr} packages available.
 #'
+#' @import readr
+#'
 #' @param filename A character string for the name of a file in the \code{data} directory within fars_data.zip
 #'
 #' @return Returns a dataframe of accident data for a given filename.
