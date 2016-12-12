@@ -5,7 +5,7 @@
 #'
 #' Needs \code{dplyr} and \code{readr} packages available.
 #'
-#' @import readr
+#' @import dplyr readr tidyr maps
 #'
 #' @param filename A character string for the name of a file in the \code{data} directory within fars_data.zip
 #'
