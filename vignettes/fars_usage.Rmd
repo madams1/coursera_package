@@ -11,16 +11,40 @@ vignette: >
 
 This package allows for easy operation on data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System, which is a nationwide census providing the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes.
 
-## Example Workflow
+# Example Workflow
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+As an example, we will outline a potential analysis with FARS data.
 
-## Figures
+### Getting the data
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+```{r, message=FALSE}
+# devtools::install_github("madams1/courserapackage")
+require(courserapackage)
+require(dplyr)
+fars_2015_file <- system.file("extdata", make_filename(2015), package = "courserapackage")
+fars_path <- dirname(fars_2015_file)
+fars_2015_data <- fars_read(fars_2015_file)
+```
 
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+We can see what this data looks like:
+
+```{r}
+fars_2015_data
+```
+
+### Summarize multiple years
+
+```{r}
+fars_summarize_years(2013:2015, path = fars_path)
+```
+
+
+### Make a map for a U.S. state
+
+Plot accidents on a map of California that occurred in 2015.
+
+```{r, fig.show='hold', message=FALSE}
+require(maps)
+fars_map_state(6, 2015, path = fars_path)
 ```
 
