@@ -21,8 +21,10 @@ Useful in conjunction with \code{make_filename()}.
 Needs \code{dplyr} and \code{readr} packages available.
 }
 \examples{
+\dontrun{
 fars_2015 <- fars_read(make_filename(2015))
 dplyr::glimpse(fars_2015)
+}
 
 }
 

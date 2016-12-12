@@ -4,10 +4,12 @@
 \alias{make_filename}
 \title{Create FARS filename}
 \usage{
-make_filename(year)
+make_filename(year, path = NULL)
 }
 \arguments{
 \item{year}{An integer-valued, 4 number year (or a value that can be coerced to such)}
+
+\item{path}{A character string representing the path that the FARS data is located in}
 }
 \value{
 Returns a character string that represents a filename for

@@ -4,10 +4,12 @@
 \alias{fars_summarize_years}
 \title{Count monthly records from multiple (yearly) FARS data sets}
 \usage{
-fars_summarize_years(years)
+fars_summarize_years(years, path = NULL)
 }
 \arguments{
 \item{years}{A list of integer-valued, 4 number years (or values that can be coerced to such)}
+
+\item{path}{A character string representing the path that the FARS data is located in}
 }
 \value{
 Returns a tibble containing the number of monthly fatal injuries suffered in motor
@@ -18,7 +20,9 @@ Returns a tibble containing the number of monthly fatal injuries suffered in mot
 Needs `dplyr`, `readr`, and `tidyr` packages available.
 }
 \examples{
+\dontrun{
 monthly_fars_2013_to_2015 <- fars_summarize_years(2013:2015)
+}
 
 }
 

@@ -4,12 +4,14 @@
 \alias{fars_map_state}
 \title{Plot accidents in year for state}
 \usage{
-fars_map_state(state.num, year)
+fars_map_state(state.num, year, path = NULL)
 }
 \arguments{
 \item{state.num}{An integer (or a value that can be coerced to such) representing a state's numeric code.}
 
 \item{year}{An integer-valued, 4 number year (or a value that can be coerced to such)}
+
+\item{path}{A character string representing the path that the FARS data is located in}
 }
 \value{
 Plots the location of accidents for the given state and year based on their latitude and longitude.
@@ -19,7 +21,9 @@ Plots the location of accidents for the given state and year based on their lati
 Needs `dplyr`, `readr`, `maps`, and `graphics` packages available. `maps` package should be loaded.
 }
 \examples{
+\dontrun{
 fars_map_state(1, 2013)
+}
 
 }
 

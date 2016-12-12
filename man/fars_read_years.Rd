@@ -4,10 +4,12 @@
 \alias{fars_read_years}
 \title{Get month and year from multiple FARS data sets at once}
 \usage{
-fars_read_years(years)
+fars_read_years(years, path = NULL)
 }
 \arguments{
 \item{years}{A list of integer-valued, 4 number years (or values that can be coerced to such)}
+
+\item{path}{A character string representing the path that the FARS data is located in}
 }
 \value{
 Returns a list with a length equal to `length(years)`.
@@ -18,7 +20,9 @@ Returns a list with a length equal to `length(years)`.
 Needs `dplyr` and `readr` packages available.
 }
 \examples{
+\dontrun{
 fars_2013_to_2015 <- fars_read_years(2013:2015)
+}
 
 }
 
