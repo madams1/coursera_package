@@ -83,6 +83,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;madams1/courserapackage&quot;)</span>
 <span class="kw">require</span>(courserapackage)
 <span class="kw">require</span>(dplyr)
+<span class="kw">require</span>(readr)
+
 fars_2015_file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="kw">make_filename</span>(<span class="dv">2015</span>), <span class="dt">package =</span> <span class="st">&quot;courserapackage&quot;</span>)
 fars_path &lt;-<span class="st"> </span><span class="kw">dirname</span>(fars_2015_file)
 fars_2015_data &lt;-<span class="st"> </span><span class="kw">fars_read</span>(fars_2015_file)</code></pre></div>

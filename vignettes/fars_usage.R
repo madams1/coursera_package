@@ -2,6 +2,8 @@
 # devtools::install_github("madams1/courserapackage")
 require(courserapackage)
 require(dplyr)
+require(readr)
+
 fars_2015_file <- system.file("extdata", make_filename(2015), package = "courserapackage")
 fars_path <- dirname(fars_2015_file)
 fars_2015_data <- fars_read(fars_2015_file)
