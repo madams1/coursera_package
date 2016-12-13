@@ -75,8 +75,8 @@ fars_read_years <- function(years, path = NULL) {
         file <- make_filename(year, path)
         tryCatch({
             dat <- fars_read(file)
-            dplyr::mutate(dat, year = year) %>%
-                dplyr::select(MONTH, year)
+            dplyr::mutate_(dat, year = ~ year) %>%
+                dplyr::select_(c("MONTH", "year"))
         }, error = function(e) {
             warning("invalid year: ", year)
             return(NULL)
@@ -105,9 +105,9 @@ fars_read_years <- function(years, path = NULL) {
 fars_summarize_years <- function(years, path = NULL) {
     dat_list <- fars_read_years(years, path)
     dplyr::bind_rows(dat_list) %>%
-        dplyr::group_by(year, MONTH) %>%
-        dplyr::summarize(n = n()) %>%
-        tidyr::spread(year, n)
+        dplyr::group_by_(~ year, ~ MONTH) %>%
+        dplyr::summarize_(n = ~ n()) %>%
+        tidyr::spread_("year", "n")
 }
 
 
@@ -135,7 +135,7 @@ fars_map_state <- function(state.num, year, path = NULL) {
 
     if(!(state.num %in% unique(data$STATE)))
         stop("invalid STATE number: ", state.num)
-    data.sub <- dplyr::filter(data, STATE == state.num)
+    data.sub <- dplyr::filter_(data, ~ STATE == state.num)
     if(nrow(data.sub) == 0L) {
         message("no accidents to plot")
         return(invisible(NULL))
