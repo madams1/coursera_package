@@ -76,7 +76,7 @@ fars_read_years <- function(years, path = NULL) {
         tryCatch({
             dat <- fars_read(file)
             dplyr::mutate_(dat, year = ~ year) %>%
-                dplyr::select_(c("MONTH", "year"))
+                dplyr::select_(.dots = c("MONTH", "year"))
         }, error = function(e) {
             warning("invalid year: ", year)
             return(NULL)
